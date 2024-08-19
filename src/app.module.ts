@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
@@ -6,19 +7,20 @@ import { HttpModule } from '@nestjs/axios';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { CacheModule } from '@nestjs/cache-manager';
 
-// Entidade de linhas
+// Entidades
 import { Linha } from './Modules/Entity/Linha';
 import { LinhaService } from './Modules/Service/Linha';
 import { LinhaController } from './Modules/Controller/Linha';
 
 import { Posicao } from './Modules/Entity/Posicao';
-import { PosicaoService } from './Modules/Service/Posicao';
-import { PosicaoController } from './Modules/Controller/Posicao';
 
-// Entidade de horario
+import { UltimaPosicao } from './Modules/Entity/UltimaPosicao';
+import { UltimaPosicaoService } from './Modules/Service/UltimaPosicao';
+import { UltimaPosicaoController } from './Modules/Controller/UltimaPosicao';
+
 import { Horaria } from './Modules/Entity/Horario';
 import { HorariaService } from './Modules/Service/Horaria';
-import { HorariaController } from './Modules/Controller/Horaria';
+import { HorarioController } from './Modules/Controller/Horaria';
 
 import { Itinerario } from './Modules/Entity/Itinerario';
 import { ItinerarioService } from './Modules/Service/Itinerario';
@@ -28,23 +30,96 @@ import { Parada } from './Modules/Entity/Parada';
 import { ParadaService } from './Modules/Service/Parada';
 import { ParadaController } from './Modules/Controller/Parada';
 
+import { PercursoEntity } from './Modules/Entity/Percurso';
+import { PercursoService } from './Modules/Service/Percurso';
+import { PercursoController } from './Modules/Controller/Percurso';
+
+import { BaciasEntity } from './Modules/Entity/Bacias';
+import { BaciasService } from './Modules/Service/Bacias';
+import { BaciasController } from './Modules/Controller/Bacias';
+
+import { OperadoraEntity } from './Modules/Entity/Operadora';
+import { OperadoraSService } from './Modules/Service/Operadora';
+import { OperadoraCController } from './Modules/Controller/Operadora';
+
+// Serviços responsáveis por inserir dados
+import { MarechalService } from './Modules/Service/gps/Marechal';
+import { PioneiraService } from './Modules/Service/gps/Pioneira';
+import { BsbusService } from './Modules/Service/gps/Bsbus';
+import { PiracicabanaService } from './Modules/Service/gps/Piracicabana';
+import { UrbiService } from './Modules/Service/gps/Urbi';
+
+// Serviços responsáveis por executar os SQL das tabelas
+import { LinhaRepository } from './Modules/Repository/Linha';
+import { BaciasRepository } from './Modules/Repository/Bacias';
+import { OperadoraRepository } from './Modules/Repository/Operadora';
+import { HorariosRepository } from './Modules/Repository/Horario';
+import { ItinerarioRepository } from './Modules/Repository/Itinerario';
+import { PercursoRepository } from './Modules/Repository/Percurso';
+import { UltimaPosicaoRepository } from './Modules/Repository/UltimaPosicao';
+import { CacheContentInterceptor } from './Modules/Interceptor/CacheContent';
+import configuration from './Modules/Config/configuration';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      load: [configuration],
     }),
     ScheduleModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.DB_HOST || 'localhost',
+      host: process.env.DB_HOST || '10.233.46.51',
       port: parseInt(process.env.DB_PORT, 10) || 5432,
-      username: process.env.DB_USERNAME || 'postgres',
-      password: process.env.DB_PASSWORD || 'postgres',
-      database: process.env.DB_DATABASE || 'postgres',
-      entities: [Linha, Operadora, Veiculo, Posicao, Horaria, Itinerario, Parada],
-      synchronize: true,
+      username: process.env.DB_USERNAME || 'app_df_no_ponto',
+      password: process.env.DB_PASSWORD || 'app6754!',
+      database: process.env.DB_DATABASE || 'bdg',
+      entities: [Linha, Horaria, Itinerario, Parada, BaciasEntity, OperadoraEntity, PercursoEntity, UltimaPosicao, Posicao],
+      synchronize: false,
+      logging: true,
     }),
-    TypeOrmModule.forFeature([Linha, Operadora, Veiculo, Posicao, Horaria, Itinerario, Parada]),
+    TypeOrmModule.forFeature([Linha, Horaria, Itinerario, Parada, BaciasEntity, OperadoraEntity, PercursoEntity, UltimaPosicao, Posicao]),
+    HttpModule,
+    CacheModule.register({
+      ttl: 86400,
+      isGlobal: true,
+    }),
+  ],
+  providers: [
+    LinhaService, 
+    OperadoraSService,
+    HorariaService, 
+    ItinerarioService, 
+    ParadaService, 
+    PioneiraService, 
+    MarechalService, 
+    BsbusService,
+    PiracicabanaService,
+    UrbiService,
+    BaciasService,
+    PercursoService,
+    UltimaPosicaoService,
+    LinhaRepository,
+    BaciasRepository,
+    OperadoraRepository,
+    HorariosRepository,
+    ItinerarioRepository,
+    PercursoRepository,
+    UltimaPosicaoRepository,
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: CacheContentInterceptor,
+    },
+  ],
+  controllers: [
+    LinhaController,
+    HorarioController, 
+    ItinerarioController, 
+    ParadaController,
+    BaciasController,
+    OperadoraCController,
+    PercursoController,
+    UltimaPosicaoController,
   ],
 })
 export class AppModule {}

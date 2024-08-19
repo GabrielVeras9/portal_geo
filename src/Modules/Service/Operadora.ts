@@ -1,23 +1,18 @@
+/* eslint-disable prettier/prettier */
+// src/Modules/Service/operadora.service.ts
+
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { Operadora } from '../Entity/Operadora';
+import { OperadoraRepository } from '../Repository/Operadora';
 
 @Injectable()
-export class OperadoraService {
-  constructor(
-    @InjectRepository(Operadora)
-    private operadoraRepository: Repository<Operadora>,
-  ) {}
+export class OperadoraSService {
+    constructor(private readonly operadoraRepository: OperadoraRepository) {}
 
-  async findAll(): Promise<Operadora[]> {
-    return this.operadoraRepository.find();
-  }
-  async findByCdLinha(nomoperadora: string): Promise<Operadora[]> {
-    return this.operadoraRepository.find({
-      where: {
-        NomOperadora: nomoperadora
-      }
-    });
-  }
+    async findAll(): Promise<any> {
+        return this.operadoraRepository.findAll();
+    }
+
+    async findOperadorasByOperadoraName(operadora: string): Promise<any> {
+        return this.operadoraRepository.findOperadorasByOperadoraName(operadora);
+    }
 }

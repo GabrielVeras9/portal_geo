@@ -1,25 +1,16 @@
+/* eslint-disable prettier/prettier */
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ schema: 'app_mobilidade_testes', name: 'tab_horaria' })
+@Entity({ schema: 'dados_mobilidade', name: 'tab_horaria' })
 export class Horaria {
-  @PrimaryGeneratedColumn({ name: 'idhorario' })
-  IdHoraria: number;
-  @Column({ type: 'int', name: 'horapartida', nullable: true })
-  HoraPartida: number;
-  @Column({ type: 'boolean', name: 'tipoveiculo', nullable: true })
-  TipoVeiculo: string;
-  @Column({ type: 'boolean', name: 'domingo', nullable: true })
-  Domigo: Date;
-  @Column({ type: 'boolean', name: 'segunda', nullable: true })
-  Segunda: string;
-  @Column({ type: 'boolean', name: 'terca', nullable: true })
-  Terca: string;
-  @Column({ type: 'boolean', name: 'quarta', nullable: true })
-  Quarta: string;
-  @Column({ type: 'boolean', name: 'quinta', nullable: true })
-  Quinta: number;
-  @Column({ type: 'boolean', name: 'sexta', nullable: true })
-  Sexta: number;
-  @Column({ type: 'boolean', name: 'sabado', nullable: true })
-  Sabado: Date;
+    @PrimaryGeneratedColumn({ name: 'id_horario' }) IdHoraria: number;
+
+@Column({ type: 'varchar', name: 'domingo', length: 1}) Domigo: string;
+@Column({ type: 'varchar', name: 'segunda', length: 1}) Segunda: string;
+@Column({ type: 'varchar', name: 'terca', length: 1}) Terca: string;
+@Column({ type: 'varchar', name: 'quarta', length: 1}) Quarta: string;
+@Column({ type: 'varchar', name: 'quinta', length: 1}) Quinta: string;
+@Column({ type: 'varchar', name: 'sexta', length: 1}) Sexta: string;
+@Column({ type: 'varchar', name: 'sabado', length: 1 }) Sabado: string;
+@Column({ type: 'int',     name: 'hr_prevista' }) HoraPartida: number;
 }

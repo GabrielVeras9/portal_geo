@@ -1,18 +1,18 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
-import { Operadora } from '../Entity/Operadora';
-import { OperadoraService } from '../Service/Operadora';
+/* eslint-disable prettier/prettier */
+import { Controller, Get, Param } from '@nestjs/common';
+import { OperadoraSService } from '../Service/Operadora';
 
-@Controller('operadora/operadoras')
-export class OperadoraController {
-  constructor(private readonly operadoraService: OperadoraService) {}
+@Controller('frota/operadora')
+export class OperadoraCController {
+    constructor(private readonly operadoraService: OperadoraSService) {}
 
-  @Get()
-  findAll(): Promise<Operadora[]> {
-    return this.operadoraService.findAll();
-  }
+    @Get()
+    async findAll() {
+        return this.operadoraService.findAll();
+    }
 
-  @Get(':NomOperadora')
-  findByCdLinha(@Param('NomOperadora') nomoperadora: string): Promise<Operadora[]> {
-    return this.operadoraService.findByCdLinha(nomoperadora);
-  }
+    @Get(':operadora')
+    async findOperadorasByOperadoraName(@Param('operadora') operadora: string) {
+        return this.operadoraService.findOperadorasByOperadoraName(operadora);
+    }
 }

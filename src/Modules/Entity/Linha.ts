@@ -1,11 +1,12 @@
+/* eslint-disable prettier/prettier */
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ schema: 'app_mobilidade', name: 'staging_tab_linha' })
+@Entity({ schema: 'dados_mobilidade', name: 'tab_linha' })
 export class Linha {
-  @PrimaryGeneratedColumn({ name: 'id_linha' })
-  IdLinha: number;
-  @Column({ type: 'varchar', length: 10, name: 'cd_linha' })
-  CdLinha: string;
-  @Column({ type: 'text', name: 'tx_linha' })
-  TxLinha: string;
+    @PrimaryGeneratedColumn({ name: 'id_linha' }) IdLinha: number;
+
+@Column({ type: 'text',    name: 'tx_linha' }) TxLinha: string;
+@Column({ type: 'varchar', name: 'cd_linha', length: 10 }) CdLinha: string;
+@Column({ type: 'decimal', name: 'vl_tarifa' }) ValorTarifa: string;
+@Column({ type: 'decimal', name: 'fx_tarifaria' }) NomeTarifario: string;
 }

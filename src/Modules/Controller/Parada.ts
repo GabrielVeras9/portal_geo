@@ -1,13 +1,14 @@
-import { Controller, Get, Param} from '@nestjs/common';
-import { Parada } from '../Entity/Parada';
+/* eslint-disable prettier/prettier */
+import { Controller, Get } from '@nestjs/common';
 import { ParadaService } from '../Service/Parada';
+import {  Parada } from '../Entity/Parada';
 
-@Controller('paradas/parada')
+@Controller('parada/onibus')
 export class ParadaController {
-  constructor(private readonly paradaService: ParadaService) {}
+  constructor(private readonly tabParadaService: ParadaService) {}
 
   @Get()
-  findAll(): Promise<Parada[]> {
-    return this.paradaService.findAll();
+  async findAll(): Promise<Parada[]> {
+    return this.tabParadaService.findAll();
   }
 }

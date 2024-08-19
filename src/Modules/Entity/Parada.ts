@@ -1,22 +1,23 @@
+/* eslint-disable prettier/prettier */
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ schema: 'app_mobilidade_testes', name: 'tab_parada' })
+@Entity({ schema: 'dados_mobilidade', name: 'tab_parada' })
 export class Parada {
-  @PrimaryGeneratedColumn({ name: 'idparada' })
-  IdParada: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-  @Column({ type: 'int', name: 'codparada', nullable: true })
-  CodParada: number;
+  @Column()
+  sequencial: number;
 
-  @Column({ type: 'boolean', name: 'seq_linha', nullable: true })
-  SeqLinha: string;
+  @Column()
+  sentido: string;
 
-  @Column({ type: 'boolean', name: 'geomparada', nullable: true })
-  GeomParada: Date;
+  @Column()
+  cod_dftrans: string;
 
-  @Column({ type: 'boolean', name: 'latitude', nullable: true })
-  Latitude: string;
+  @Column('decimal', { precision: 10, scale: 6 })
+  longitude: number;
 
-  @Column({ type: 'boolean', name: 'longitude', nullable: true })
-  Longitude: string;
+  @Column('decimal', { precision: 10, scale: 6 })
+  latitude: number;
 }

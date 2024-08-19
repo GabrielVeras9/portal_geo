@@ -1,16 +1,12 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { Itinerario } from '../Entity/Itinerario';
+import { ItinerarioRepository } from '../Repository/Itinerario';
 
 @Injectable()
 export class ItinerarioService {
-  constructor(
-    @InjectRepository(Itinerario)
-    private itinerarioRepository: Repository<Itinerario>,
-  ) {}
+    constructor(private readonly itinerarioRepository: ItinerarioRepository) {}
 
-  async findAll(): Promise<Itinerario[]> {
-    return this. itinerarioRepository.find();
-  }
+    async findItinerarioDescritivoByCodigo(codigoLinha: string): Promise<any> {
+        return this.itinerarioRepository.findItinerarioDescritivoByCodigo(codigoLinha);
+    }
 }

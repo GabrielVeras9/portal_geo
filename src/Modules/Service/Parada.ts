@@ -7,10 +7,10 @@ import { Parada } from '../Entity/Parada';
 export class ParadaService {
   constructor(
     @InjectRepository(Parada)
-    private paradaRepository: Repository<Parada>,
+    private readonly tabParadaRepository: Repository<Parada>,
   ) {}
 
   async findAll(): Promise<Parada[]> {
-    return this. paradaRepository.find();
+    return this.tabParadaRepository.find();
   }
 }

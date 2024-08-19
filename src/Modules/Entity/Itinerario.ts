@@ -1,19 +1,26 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+/* eslint-disable prettier/prettier */
+import { Entity, Column, PrimaryColumn } from 'typeorm';
 
-@Entity({ schema: 'app_mobilidade_testes', name: 'tab_itinerario' })
+@Entity({ schema: 'dados_mobilidade', name: 'tab_itineraro_descritivo' })
 export class Itinerario {
-  @PrimaryGeneratedColumn({ name: 'iditinerario' })
-  IdItinerario: number;
+    @PrimaryColumn({ name: 'id_itinerario' })
+    idItinerario: number;
 
-  @Column({ type: 'int', name: 'itidescritivo', nullable: true })
-  ItinerarioDescritivo: number;
+    @Column({ type: 'int', name: 'id_linha' })
+    idLinha: number;
 
-  @Column({ type: 'boolean', name: 'extensao', nullable: true })
-  Extensao: string;
+    @Column({ type: 'varchar', name: 'nm_via', length: 120 })
+    nmVia: string;
 
-  @Column({ type: 'boolean', name: 'sentido', nullable: true })
-  Sentido: Date;
+    @Column({ type: 'numeric', precision: 6, scale: 2, name: 'lin_extensao' })
+    linExtensao: number;
 
-  @Column({ type: 'boolean', name: 'geomitinerario', nullable: true })
-  ItinerarioGeo: string;
+    @Column({ type: 'varchar', name: 'lin_sentido', length: 10 })
+    linSentido: string;
+
+    @Column({ type: 'numeric', precision: 5, nullable: true, name: 'nm_sequencia' })
+    nmSequencia: number;
+
+    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', name: 'dataregistro' })
+    dataRegistro: Date;
 }

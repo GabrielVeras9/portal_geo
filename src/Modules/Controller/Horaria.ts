@@ -1,13 +1,13 @@
-import { Controller, Get, Param} from '@nestjs/common';
-import { Horaria } from '../Entity/Horario';
+/* eslint-disable prettier/prettier */
+import { Controller, Get, Param } from '@nestjs/common';
 import { HorariaService } from '../Service/Horaria';
 
-@Controller('tabela/horaria')
-export class HorariaController {
-  constructor(private readonly horariaService: HorariaService) {}
+@Controller('tabela/horario')
+export class HorarioController {
+    constructor(private readonly horariaService: HorariaService) {}
 
-  @Get()
-  findAll(): Promise<Horaria[]> {
-    return this.horariaService.findAll();
-  }
+    @Get(':codigoLinha')
+    async findByCodigoLinha(@Param('codigoLinha') codigoLinha: string) {
+        return this.horariaService.findByCodigoLinha(codigoLinha);
+    }
 }
