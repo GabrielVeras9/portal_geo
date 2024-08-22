@@ -4,35 +4,68 @@ import { DataSource } from 'typeorm';
 
 @Injectable()
 export class UltimaPosicaoRepository {
-    constructor(private readonly dataSource: DataSource) {}
+    constructor(private readonly dataSource: DataSource) { }
+    /**
+     * ativa a function para pesquisar todas as posicoes de linhas
+     * @returns
+     */
+    async getFindAllOperadorasPosicoes() {
+        const query = `select * from dados_mobilidade.get_operadoras_posicoes();`;
+        return this.dataSource.query(query);
+    }
 
+    /**
+     * Responsavel por ativar a function do banco de dados e realizar a pesquisa
+     * @returns
+     */
     async findPiracicabana() {
-        const query = `select jsonb_agg(jsonb_build_object('operadora',to2.nm_operadora,'prefixo',tup.prefixo,'datalocal',tup.datalocal,'velocidade',tup.velocidade,'codigo',tup.cd_linha,'direcao',tup.direcao,'latitude',tup.latitude,'longitude',tup.longitude) order by tup.cd_linha desc) as operadora from dados_mobilidade.tab_operadora to2, dados_mobilidade.tab_ultima_posicao tup where to2.id_operadora = tup.id_operadora and to2.nm_operadora = 'VIAÇÃO PIRACICABANA - BACIA 01';`;
+        const query = `select * from dados_mobilidade.gps_operadora_recent('VIAÇÃO PIRACICABANA - BACIA 01');`;
         return this.dataSource.query(query);
     }
 
+    /**
+     * Responsavel por ativar a function do banco de dados e realizar a pesquisa
+     * @returns
+     */
     async findPioneira() {
-        const query = `select jsonb_agg(jsonb_build_object('operadora',to2.nm_operadora,'prefixo',tup.prefixo,'datalocal',tup.datalocal,'velocidade',tup.velocidade,'codigo',tup.cd_linha,'direcao',tup.direcao,'latitude',tup.latitude,'longitude',tup.longitude) order by tup.cd_linha desc) as operadora from dados_mobilidade.tab_operadora to2,dados_mobilidade.tab_ultima_posicao tup where to2.id_operadora = tup.id_operadora and to2.nm_operadora = 'VIAÇÃO PIONEIRA BACIA - 02';`;
+        const query = `select * from dados_mobilidade.gps_operadora_recent('VIAÇÃO PIONEIRA BACIA - 02');`;
         return this.dataSource.query(query);
     }
 
+    /**
+     * Responsavel por ativar a function do banco de dados e realizar a pesquisa
+     * @returns
+     */
     async findUrbi() {
-        const query = `select jsonb_agg(jsonb_build_object('operadora',to2.nm_operadora,'prefixo',tup.prefixo,'datalocal',tup.datalocal,'velocidade',tup.velocidade,'codigo',tup.cd_linha,'direcao',tup.direcao,'latitude',tup.latitude,'longitude',tup.longitude) order by tup.cd_linha desc) as operadora from dados_mobilidade.tab_operadora to2,dados_mobilidade.tab_ultima_posicao tup where to2.id_operadora = tup.id_operadora and to2.nm_operadora = 'URBI - MOBILID. URBANA - BACIA 03';`;
+        const query = `select * from dados_mobilidade.gps_operadora_recent('URBI - MOBILID. URBANA - BACIA 03');`;
         return this.dataSource.query(query);
     }
 
+    /**
+     * Responsavel por ativar a function do banco de dados e realizar a pesquisa
+     * @returns
+     */
     async findMarechal() {
-        const query = `select jsonb_agg(jsonb_build_object('operadora',to2.nm_operadora,'prefixo',tup.prefixo,'datalocal',tup.datalocal,'velocidade',tup.velocidade,'codigo',tup.cd_linha,'direcao',tup.direcao,'latitude',tup.latitude,'longitude',tup.longitude) order by tup.cd_linha desc) as operadora from dados_mobilidade.tab_operadora to2,dados_mobilidade.tab_ultima_posicao tup where to2.id_operadora = tup.id_operadora and to2.nm_operadora = 'AUTO VIAÇÃO MARECHAL - BACIA 04';`;
+        const query = `select * from dados_mobilidade.gps_operadora_recent('AUTO VIAÇÃO MARECHAL - BACIA 04');`;
         return this.dataSource.query(query);
     }
 
+    /**
+     * Responsavel por ativar a function do banco de dados e realizar a pesquisa
+     * @returns
+     */
     async findSaoJose() {
-        const query = `select jsonb_agg(jsonb_build_object('operadora',to2.nm_operadora,'prefixo',tup.prefixo,'datalocal',tup.datalocal,'velocidade',tup.velocidade,'codigo',tup.cd_linha,'direcao',tup.direcao,'latitude',tup.latitude,'longitude',tup.longitude) order by tup.cd_linha desc) as operadora from dados_mobilidade.tab_operadora to2,dados_mobilidade.tab_ultima_posicao tup where to2.id_operadora = tup.id_operadora and to2.nm_operadora = 'EXPRESSO SÃO JOSÉ BACIA - 05';`;
+        const query = `select * from dados_mobilidade.gps_operadora_recent('EXPRESSO SÃO JOSÉ BACIA - 05');`;
         return this.dataSource.query(query);
     }
 
+    /**
+     * Responsavel por ativar a function do banco de dados e realizar a pesquisa
+     * @param cd_linha
+     * @returns
+     */
 	async findPositioLinhaNumber(cd_linha: string) {
-        const query = `select jsonb_agg(jsonb_build_object('operadora',to2.nm_operadora,'prefixo',tup.prefixo,'data',tup.datalocal,'velocidade',tup.velocidade,'codigo',tup.cd_linha,'direcao',tup.direcao,'latitude',tup.latitude,'longitude',tup.longitude,'dataregistro ',tup.dataregistro) order by tup.cd_linha desc) as operacao from dados_mobilidade.tab_operadora to2,dados_mobilidade.tab_ultima_posicao tup where to2.id_operadora = tup.id_operadora and (tup.prefixo = $1 OR tup.cd_linha = $1);`;
+        const query = `select * from dados_mobilidade.gps_linha_recent($1);`;
         return this.dataSource.query(query, [cd_linha]);
     }
 }

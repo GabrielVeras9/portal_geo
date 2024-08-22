@@ -9,7 +9,11 @@ export class PercursoRepository extends Repository<PercursoEntity> {
   constructor(private readonly dataSource: DataSource) {
     super(PercursoEntity, dataSource.createEntityManager());
   }
-
+  /**
+   * Ativa a function para pesquisar o percurso de apeans uma linha
+   * @param cdLinha
+   * @returns
+   */
   async findByCdLinha(cdLinha: string): Promise<any> {
     const query = `
         SELECT jsonb_agg(

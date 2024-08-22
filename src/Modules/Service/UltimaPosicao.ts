@@ -14,8 +14,8 @@ export class UltimaPosicaoService {
     private readonly ultimaPosicaoRepository: UltimaPosicaoRepository, // Injeção do repositório personalizado
   ) {}
 
-  async findAll(): Promise<UltimaPosicao[]> {
-    return await this.tabUltimaPosicaoRepository.find();
+   async getFindAllOperadorasPosicoes(): Promise<UltimaPosicao[]> {
+       return await this.ultimaPosicaoRepository.getFindAllOperadorasPosicoes();
   }
 
   async findPiracicabana() {

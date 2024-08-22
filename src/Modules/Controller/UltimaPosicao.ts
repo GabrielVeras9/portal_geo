@@ -8,12 +8,12 @@ import { Response } from 'express';
 export class UltimaPosicaoController {
   constructor(private readonly UltimaPosicaoService: UltimaPosicaoService) {}
 
-  @Get()
-  async findAll(@Res() res: Response): Promise<void> {
-    const data = await this.UltimaPosicaoService.findAll();
-    res.setHeader('Content-Type', 'application/json');
-    res.json(data);
-  }
+    @Get()
+    async findAll(@Res() res: Response): Promise<void> {
+        const data = await this.UltimaPosicaoService.getFindAllOperadorasPosicoes();
+        res.setHeader('Content-Type', 'application/json');
+        res.json(data);
+    }
 
   @Get('/piracicabana')
   async findPiracicabana(@Res() res: Response) {
