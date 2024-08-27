@@ -9,4 +9,6 @@ export class Linha {
 @Column({ type: 'varchar', name: 'cd_linha', length: 10 }) CdLinha: string;
 @Column({ type: 'decimal', name: 'vl_tarifa' }) ValorTarifa: string;
 @Column({ type: 'decimal', name: 'fx_tarifaria' }) NomeTarifario: string;
+@Column({ type: 'date', name: 'dt_inicio_tarifa' }) dataInicioVigencia: string;
+@Column({ type: 'date', name: 'dt_final_tarifa' }) dataFimVigencia: string;
 }

@@ -43,11 +43,11 @@ import { OperadoraSService } from './Modules/Service/Operadora';
 import { OperadoraCController } from './Modules/Controller/Operadora';
 
 // Serviços responsáveis por inserir dados
-import { MarechalService } from './Modules/Service/gps/Marechal';
+/*import { MarechalService } from './Modules/Service/gps/Marechal';
 import { PioneiraService } from './Modules/Service/gps/Pioneira';
 import { BsbusService } from './Modules/Service/gps/Bsbus';
 import { PiracicabanaService } from './Modules/Service/gps/Piracicabana';
-import { UrbiService } from './Modules/Service/gps/Urbi';
+import { UrbiService } from './Modules/Service/gps/Urbi';*/
 
 // Serviços responsáveis por executar os SQL das tabelas
 import { LinhaRepository } from './Modules/Repository/Linha';
@@ -69,11 +69,11 @@ import configuration from './Modules/Config/configuration';
     ScheduleModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.DB_HOST || 'localhost',
+      host: process.env.DB_HOST || '10.233.46.51',
       port: parseInt(process.env.DB_PORT, 10) || 5432,
-      username: process.env.DB_USERNAME || 'postgres',
-      password: process.env.DB_PASSWORD || '123456',
-      database: process.env.DB_DATABASE || 'postgres',
+      username: process.env.DB_USERNAME || 'app_df_no_ponto',
+      password: process.env.DB_PASSWORD || 'app6754!',
+      database: process.env.DB_DATABASE || 'bdg',
       entities: [Linha, Horaria, Itinerario, Parada, BaciasEntity, OperadoraEntity, PercursoEntity, UltimaPosicao, Posicao],
       synchronize: false,
       logging: true,
@@ -91,11 +91,11 @@ import configuration from './Modules/Config/configuration';
     HorariaService, 
     ItinerarioService, 
     ParadaService, 
-    PioneiraService, 
+    /*PioneiraService, 
     MarechalService, 
     BsbusService,
     PiracicabanaService,
-    UrbiService,
+    UrbiService,*/
     BaciasService,
     PercursoService,
     UltimaPosicaoService,

@@ -8,8 +8,31 @@ export class PercursoService {
     @InjectRepository(PercursoRepository)
     private readonly percursoRepository: PercursoRepository,
   ) {}
+  /**
+   * 
+   * @param cdLinha 
+   * @returns 
+   */
+  async findAllPercurso(cdLinha: string): Promise<any> {
+    return this.percursoRepository.findAllPercurso;
+  } 
 
+  /**
+   * 
+   * @param cdLinha 
+   * @returns 
+   */
   async findByCdLinha(cdLinha: string): Promise<any> {
     return this.percursoRepository.findByCdLinha(cdLinha);
+  }
+  
+  /**
+   * 
+   * @param cdLinha 
+   * @param linSentido 
+   * @returns 
+   */
+  async findBySentidoLinha(cdLinha: string, linSentido: string): Promise<any> {
+      return this.percursoRepository.findByPercursoLinha(linSentido, cdLinha);
   }
 }

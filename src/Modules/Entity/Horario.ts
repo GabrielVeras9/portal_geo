@@ -13,4 +13,6 @@ export class Horaria {
 @Column({ type: 'varchar', name: 'sexta', length: 1}) Sexta: string;
 @Column({ type: 'varchar', name: 'sabado', length: 1 }) Sabado: string;
 @Column({ type: 'int',     name: 'hr_prevista' }) HoraPartida: number;
+@Column({ type: 'date',     name: 'dt_inicio_vigencia' }) InicioVigencia: number;
+@Column({ type: 'date',     name: 'dt_fim_vigencia' }) FimVigencia: number;
 }
