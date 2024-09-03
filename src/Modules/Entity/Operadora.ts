@@ -1,17 +1,10 @@
-/* eslint-disable prettier/prettier */
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, Index } from 'typeorm';
 
-@Entity({ schema: 'dados_mobilidade', name: 'tab_operadora' })
+@Index('idx_tab_operadora_id_operadora', ['idOperadora'])
 export class OperadoraEntity {
-    @PrimaryGeneratedColumn({ name: 'id_operadora' }) idOperadora: number;
-
-@Column({ length: 200, nullable: true }) operadora: string;
-@Column({ length: 20, nullable: true }) sigla: string;
-@Column({ length: 7, nullable: true }) placa: string;
-@Column({ length: 50, nullable: true }) modelo: string;
-@Column({ length: 50, nullable: true }) marca: string;
-@Column({ length: 50, nullable: true }) cor: string;
-@Column({ length: 1, nullable: true }) tipo: string;
-@Column('numeric', { precision: 4, nullable: true }) fabricacao: number;
-@Column({ length: 8, nullable: true }) prefixo: string;
+    @PrimaryGeneratedColumn({ name: 'id_operadora' })IdOperadora: number;
+    @Column({ type: 'varchar', length: 20, name: 'nm_cpf_cnpj', nullable: true })nmCpfCnpj: string;
+    @Column({ type: 'varchar', length: 50, name: 'nm_operadora' })NomeOperadora: string;
+    @Column({ type: 'date', name: 'inicio_autorga', nullable: true })InicioVigenciaAutorga: Date;
+    @Column({ type: 'date', name: 'fim_autorga', nullable: true })FimVigenciaAutorga: Date;
 }

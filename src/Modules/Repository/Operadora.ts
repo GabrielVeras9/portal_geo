@@ -6,7 +6,7 @@ import { DataSource } from 'typeorm';
 export class OperadoraRepository {
     constructor(private readonly dataSource: DataSource) {}
     /**
-     * ativa a function para pesquisar todos os veiculos de todas as operadoras
+     *
      * @returns
      */
     async findAll() {
@@ -14,7 +14,7 @@ export class OperadoraRepository {
         return this.dataSource.query(query);
     }
     /**
-     * ativa a function para filtrar todos os veiculos de apenas uma operadoras
+     *
      * @param operadora
      * @returns
      */

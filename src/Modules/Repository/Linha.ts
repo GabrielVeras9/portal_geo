@@ -6,7 +6,7 @@ import { DataSource } from 'typeorm';
 export class LinhaRepository {
     constructor(private readonly dataSource: DataSource) { }
     /**
-     * Ativa a function para pesquisar linhas por operadoras
+     *
      * @param cd_linha
      * @returns
      */
@@ -15,7 +15,7 @@ export class LinhaRepository {
         return this.dataSource.query(query, [cd_linha]);
     }
     /**
-     * Ativa a function para pesquisar todas as linhas
+     *
      * @returns
      */
     async getFindAll() {

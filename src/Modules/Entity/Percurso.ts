@@ -6,16 +6,8 @@ export class PercursoEntity {
   @PrimaryGeneratedColumn({ name: 'id_itinerario' })
   idItinerario: number;
 
-  @Column({ name: 'id_linha' })
-  idLinha: number;
-
-  @Column({ name: 'lin_extensao', type: 'numeric', precision: 6, scale: 2 })
-  linExtensao: number;
-
-  @Column({ name: 'lin_sentido', type: 'varchar', length: 10 })
-  linSentido: string;
-
-  @Column({ name: 'geo_linhas_lin', type: 'geometry', nullable: true, spatialFeatureType: 'LineString', srid: 31983 })
-geoLinhasLin: string;
-
+  @Column({ name: 'id_linha' })idLinha: number;
+  @Column({ name: 'lin_extensao', type: 'numeric', precision: 6, scale: 2 })linExtensao: number;
+  @Column({ name: 'lin_sentido', type: 'varchar', length: 10 })linSentido: string;
+  @Column({ name: 'geo_linhas_lin', type: 'geometry', nullable: true, spatialFeatureType: 'LineString', srid: 4323 })geoLinhasLin: string;
 }

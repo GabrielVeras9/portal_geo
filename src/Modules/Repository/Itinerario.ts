@@ -6,7 +6,7 @@ import { DataSource } from 'typeorm';
 export class ItinerarioRepository {
     constructor(private readonly dataSource: DataSource) { }
     /**
-     * ativa a function para pesquisa o itinerario descritivo de uma linha
+     * 
      * @param codigoLinha
      * @returns
      */

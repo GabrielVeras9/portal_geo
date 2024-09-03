@@ -1,39 +1,14 @@
-/* eslint-disable prettier/prettier */
-import {
-    Entity,
-    PrimaryGeneratedColumn,
-    Column,
-} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, Index } from 'typeorm';
 
 @Entity({ schema: 'dados_mobilidade', name: 'tab_ultima_posicao' })
 export class UltimaPosicao {
-    @PrimaryGeneratedColumn({ name: 'id_ultimaposicao' })
-    id: number;
-
-    @Column({ type: 'int', nullable: true })
-    id_operadora: number;
-
-    @Column({ type: 'varchar', length: 20, nullable: true })
-    prefixo: string;
-
-    @Column({ type: 'varchar', length: 20, nullable: true })
-    datalocal: string;
-
-    @Column({ type: 'varchar', length: 15, nullable: true })
-    velocidade: string;
-
-    @Column({ type: 'varchar', length: 20, nullable: true })
-    cd_linha: string;
-
-    @Column({ type: 'varchar', length: 20, nullable: true })
-    direcao: string;
-
-    @Column({ type: 'float8', nullable: true })
-    latitude: number;
-
-    @Column({ type: 'float8', nullable: true })
-    longitude: number;
-
-    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', nullable: false })
-    dataregistro: Date;
+    @PrimaryGeneratedColumn({ name: 'id_ultimaposicao' })id: number;
+    @Column({ type: 'int', nullable: true, name: 'id_operadora' })IdOperadora: number;
+    @Column({ type: 'varchar', length: 20, nullable: true, name: 'prefixo' })Prefixo: string;
+    @Column({ type: 'varchar', length: 20, nullable: true, name: 'datalocal' })DataLocal: string;
+    @Column({ type: 'varchar', length: 15, nullable: true, name: 'velocidade' })Velocidade: string;
+    @Column({ type: 'varchar', length: 20, nullable: true, name: 'cd_linha' })NumLinha: string;
+    @Column({ type: 'varchar', length: 20, nullable: true, name: 'direcao' })Direcao: string;
+    @Column({ type: 'float8', nullable: true, name: 'latitude' })Latitude: number;
+    @Column({ type: 'float8', nullable: true, name: 'longitude' })Longitude: number;
 }

@@ -26,15 +26,12 @@ export class PercursoController {
   
   /**
    * 
-   * @param linSentido 
-   * @param cdLinha 
+   * @param idLinha 
    * @returns 
    */
-  @Get(':sentido/:cdLinha')
-  async findBySentidoLinha(
-    @Param('sentido') linSentido: string, 
-    @Param('cdLinha') cdLinha: string
-  ): Promise<any> {
-    return this.itinerarioEspacialService.findBySentidoLinha(linSentido, cdLinha);
+  @Get(':idLinha/geo')
+  async getGeoLinhasByIdLinha(@Param('idLinha') idLinha: number): Promise<string | null> {
+    const geoLinhas = await this.itinerarioEspacialService.findGeoLinhasByIdLinha(idLinha);
+    return geoLinhas;
   }
 }

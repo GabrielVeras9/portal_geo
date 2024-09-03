@@ -34,11 +34,10 @@ export class BsbusService {
       const data = response.data.Dados;
 
       for (const item of data) {
-
         const posicao = new Posicao();
         posicao.IdOperadora = 3450;
         posicao.Prefixo = item[0];
-        posicao.DataLocal = this.parseDate(item[1]);
+        posicao.DataLocal = this.parseDate(item[1]); // Usando Date para timestamp
         posicao.Latitude = this.parseCoordinate(item[2]);
         posicao.Longitude = this.parseCoordinate(item[3]);
         posicao.Direcao = item[4];
@@ -47,7 +46,7 @@ export class BsbusService {
         await this.posicaoRepository.save(posicao);
       }
     } catch (error) {
-      //console.error('Erro ao buscar e salvar dados:', error);
+      this.logger.error('Erro ao buscar e salvar dados:', error);
     }
   }
 
@@ -56,12 +55,12 @@ export class BsbusService {
     const dateParts = parts[0].split('/');
     const timeParts = parts[1].split(':');
     return new Date(
-      parseInt(dateParts[2], 10),
-      parseInt(dateParts[1], 10) - 1,
-      parseInt(dateParts[0], 10),
-      parseInt(timeParts[0], 10),
-      parseInt(timeParts[1], 10),
-      parseInt(timeParts[2], 10)
+      parseInt(dateParts[2], 10),    // Ano
+      parseInt(dateParts[1], 10) - 1, // Mês (0-based)
+      parseInt(dateParts[0], 10),    // Dia
+      parseInt(timeParts[0], 10),    // Hora
+      parseInt(timeParts[1], 10),    // Minuto
+      parseInt(timeParts[2], 10)     // Segundo
     );
   }
 

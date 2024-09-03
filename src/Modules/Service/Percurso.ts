@@ -8,14 +8,14 @@ export class PercursoService {
     @InjectRepository(PercursoRepository)
     private readonly percursoRepository: PercursoRepository,
   ) {}
+
   /**
-   * 
-   * @param cdLinha 
-   * @returns 
+   *
+   * @returns Uma lista de todos os percursos
    */
-  async findAllPercurso(cdLinha: string): Promise<any> {
-    return this.percursoRepository.findAllPercurso;
-  } 
+  async findAllPercurso(): Promise<any> {
+    return await this.percursoRepository.findAllPercurso();
+  }
 
   /**
    * 
@@ -33,6 +33,19 @@ export class PercursoService {
    * @returns 
    */
   async findBySentidoLinha(cdLinha: string, linSentido: string): Promise<any> {
-      return this.percursoRepository.findByPercursoLinha(linSentido, cdLinha);
+    return this.percursoRepository.findByPercursoLinha(linSentido, cdLinha);
+  }
+
+  /**
+   * 
+   * @param idLinha 
+   * @returns 
+   */
+  async findGeoLinhasByIdLinha(idLinha: number): Promise<string | null> {
+    const percurso = await this.percursoRepository.findOne({
+      where: { idLinha },
+    });
+
+    return percurso ? percurso.geoLinhasLin : null;
   }
 }

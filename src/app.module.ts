@@ -42,12 +42,12 @@ import { OperadoraEntity } from './Modules/Entity/Operadora';
 import { OperadoraSService } from './Modules/Service/Operadora';
 import { OperadoraCController } from './Modules/Controller/Operadora';
 
-// Serviços responsáveis por inserir dados
-/*import { MarechalService } from './Modules/Service/gps/Marechal';
-import { PioneiraService } from './Modules/Service/gps/Pioneira';
 import { BsbusService } from './Modules/Service/gps/Bsbus';
+import { MarechalService } from './Modules/Service/gps/Marechal';
+import { PioneiraService } from './Modules/Service/gps/Pioneira';
 import { PiracicabanaService } from './Modules/Service/gps/Piracicabana';
-import { UrbiService } from './Modules/Service/gps/Urbi';*/
+import { UrbiService } from './Modules/Service/gps/Urbi';
+
 
 // Serviços responsáveis por executar os SQL das tabelas
 import { LinhaRepository } from './Modules/Repository/Linha';
@@ -91,11 +91,11 @@ import configuration from './Modules/Config/configuration';
     HorariaService, 
     ItinerarioService, 
     ParadaService, 
-    /*PioneiraService, 
+    PioneiraService, 
     MarechalService, 
     BsbusService,
     PiracicabanaService,
-    UrbiService,*/
+    UrbiService,
     BaciasService,
     PercursoService,
     UltimaPosicaoService,
