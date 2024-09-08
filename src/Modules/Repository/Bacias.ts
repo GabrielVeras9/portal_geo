@@ -6,6 +6,7 @@ import { DataSource } from 'typeorm';
 @Injectable()
 export class BaciasRepository {
     constructor(private readonly dataSource: DataSource) {}
+    
     /**
      * Ativa a function do banco para pesquisar as bacias
      * @returns

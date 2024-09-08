@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, Index } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, Index, OneToMany } from 'typeorm';
+import { PercursoEntity } from './Percurso';
 
 @Index('idx_cd_linha', ['CdLinha'])
 @Index('idx_tab_linha_id_linha', ['IdLinha'])
@@ -11,4 +12,7 @@ export class Linha {
     @Column({ type: 'varchar', name: 'fx_tarifaria', length: 50, nullable: true })NomeTarifario: string;
     @Column({ type: 'date', name: 'dt_inicial_tarifa', nullable: true })DataInicioVigenciaTarifa: Date;
     @Column({ type: 'date', name: 'dt_final_tarifa', nullable: true })DataFimVigenciaTarifa: Date;
+
+    @OneToMany(() => PercursoEntity, percurso => percurso.idLinha)
+    percursos: PercursoEntity[];
 }

@@ -6,9 +6,8 @@ import * as bodyParser from 'body-parser'; // Use 'import * as' para importar co
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  // Configurar body-parser para aumentar o limite de tamanho das requisições
-  app.use(bodyParser.json({ limit: '500mb' }));
-  app.use(bodyParser.urlencoded({ limit: '500mb', extended: true }));
+  app.use(bodyParser.json({ limit: '50mb' }));
+  app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
   app.use(compression());
   app.use((req, res, next) => {
     res.setHeader('Content-Type', 'application/json');

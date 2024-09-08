@@ -1,44 +1,61 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { UltimaPosicao } from '../Entity/UltimaPosicao';
-import { UltimaPosicaoRepository } from '../Repository/UltimaPosicao'; // Importação do repositório personalizado
+import { UltimaPosicaoRepository } from '../Repository/UltimaPosicao'; // Repositório personalizado
+import { UltimaPosicao } from '../Entity/UltimaPosicao'; // Entidade
 
 @Injectable()
 export class UltimaPosicaoService {
   constructor(
-    @InjectRepository(UltimaPosicao)
-    private readonly tabUltimaPosicaoRepository: Repository<UltimaPosicao>,
-
     private readonly ultimaPosicaoRepository: UltimaPosicaoRepository, // Injeção do repositório personalizado
   ) {}
 
-   async getFindAllOperadorasPosicoes(): Promise<UltimaPosicao[]> {
-       return await this.ultimaPosicaoRepository.getFindAllOperadorasPosicoes();
+  /**
+   * Retorna as posições de todas as operadoras
+   */
+  async getFindAllOperadorasPosicoes(): Promise<UltimaPosicao[]> {
+    return await this.ultimaPosicaoRepository.getFindAllOperadorasPosicoes();
   }
 
-  async findPiracicabana() {
+  /**
+   * Retorna posições da operadora Piracicabana
+   */
+  async findPiracicabana(): Promise<UltimaPosicao[]> {
     return await this.ultimaPosicaoRepository.findPiracicabana();
   }
 
-  async findPioneira() {
+  /**
+   * Retorna posições da operadora Pioneira
+   */
+  async findPioneira(): Promise<UltimaPosicao[]> {
     return await this.ultimaPosicaoRepository.findPioneira();
   }
 
-  async findUrbi() {
+  /**
+   * Retorna posições da operadora Urbi
+   */
+  async findUrbi(): Promise<UltimaPosicao[]> {
     return await this.ultimaPosicaoRepository.findUrbi();
   }
 
-  async findMarechal() {
+  /**
+   * Retorna posições da operadora Marechal
+   */
+  async findMarechal(): Promise<UltimaPosicao[]> {
     return await this.ultimaPosicaoRepository.findMarechal();
   }
 
-  async findSaoJose() {
+  /**
+   * Retorna posições da operadora São José
+   */
+  async findSaoJose(): Promise<UltimaPosicao[]> {
     return await this.ultimaPosicaoRepository.findSaoJose();
   }
 
-  async findPositionLinhaNumber(cd_linha: string): Promise<any> {
+  /**
+   * Retorna as posições com base no número da linha
+   * @param cd_linha - Código da linha
+   */
+  async findPositionLinhaNumber(cd_linha: string): Promise<UltimaPosicao[]> {
     return this.ultimaPosicaoRepository.findPositioLinhaNumber(cd_linha);
   }
 }

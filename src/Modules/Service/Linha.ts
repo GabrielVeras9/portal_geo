@@ -17,15 +17,23 @@ export class LinhaService {
         return this.linhaCustomRepository.getFindAll();
     }
 
+    async getLinhasOperadoras(cdLinha: string): Promise<any> {
+        return this.linhaCustomRepository.getFindNumeroLinha(cdLinha);
+    }
+
+    async getFindLinhas(cdLinha: string, limit: bigint): Promise<any> {
+        return this.linhaCustomRepository.getFindLinha(cdLinha, limit);
+    }
+
+    async getShortLinhas(cdLinha: string, limit: bigint): Promise<any> {
+        return this.linhaCustomRepository.getShortLinha(cdLinha, limit);
+    }
+
     async findByCdLinha(cdLinha: string): Promise<Linha[]> {
         return this.linhaRepository.find({
             where: {
                 CdLinha: cdLinha,
             },
         });
-    }
-
-    async getLineDetails(cdLinha: string): Promise<any> {
-        return this.linhaCustomRepository.getFindNumber(cdLinha);
     }
 }

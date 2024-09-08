@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PercursoRepository } from '../Repository/Percurso';
+import { PercursoEntity } from '../Entity/Percurso';
 
 @Injectable()
 export class PercursoService {
@@ -47,5 +48,26 @@ export class PercursoService {
     });
 
     return percurso ? percurso.geoLinhasLin : null;
+  }
+  
+  /**
+   *
+   * @param cdLinha 
+   * @returns 
+   */
+  async findGeoLinhasByCdLinha(cdLinha: string): Promise<any[] | null> {
+    const percursos = await this.percursoRepository
+        .createQueryBuilder('percurso')
+        .innerJoinAndSelect('percurso.linha', 'linha')
+        .where('linha.CdLinha = :cdLinha', { cdLinha })
+        .select([
+            'linha.CdLinha',
+            'percurso.linExtensao',
+            'percurso.linSentido',
+            'percurso.geoLinhasLin'
+        ])
+        .getMany();
+
+    return percursos.length ? percursos : null;
   }
 }

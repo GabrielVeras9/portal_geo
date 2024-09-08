@@ -14,6 +14,8 @@ export class CacheContentInterceptor extends CacheInterceptor {
     '/gps/ultima/posicao/saojose',
     '/gps/ultima/posicao/pioneira',
     '/gps/ultima/posicao/recent/:codlinha',
+    '/linhas/itinerarios/espaciais/:codlinha',
+    '/linhas/itinerarios/espaciais/:cdLinha',
   ];
 
   async intercept(context: ExecutionContext, next: CallHandler): Promise<Observable<any>> {

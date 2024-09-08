@@ -6,7 +6,11 @@ import { ItinerarioRepository } from '../Repository/Itinerario';
 export class ItinerarioService {
     constructor(private readonly itinerarioRepository: ItinerarioRepository) {}
 
-    async findItinerarioDescritivoByCodigo(codigoLinha: string): Promise<any> {
-        return this.itinerarioRepository.findItinerarioDescritivoByCodigo(codigoLinha);
+    async findItinerario(codigoLinha: string): Promise<any> {
+        return this.itinerarioRepository.findItinerarioByCodigo(codigoLinha);
     }
+
+    async findSentidoItinerario(codigoLinha: string, sentido: string): Promise<any> {
+        return this.itinerarioRepository.findSentidoItinerarioByCodigo(codigoLinha, sentido);
+    }    
 }

@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Get, Param } from '@nestjs/common';
+import { BadRequestException, Controller, Get, Param } from '@nestjs/common';
 import { LinhaService } from '../Service/Linha';
 import { Linha } from '../Entity/Linha';
 
@@ -7,15 +7,60 @@ import { Linha } from '../Entity/Linha';
 export class LinhaController {
     constructor(private readonly linhaService: LinhaService) {}
 
-    /* Busca todas as linhas */
+    /**
+     * 
+     * @returns 
+     */
     @Get()
     findAll(): Promise<any> {
         return this.linhaService.getFindAll();
     }
 
-    /* Pesquisa uma linha específica */
+    /**
+     * 
+     * @param cdLinha 
+     * @returns 
+     */
     @Get(':cdLinha')
-    getLineDetails(@Param('cdLinha') cdLinha: string): Promise<any> {
-        return this.linhaService.getLineDetails(cdLinha);
+    getLinhasOperadoras(@Param('cdLinha') cdLinha: string): Promise<any> {
+        return this.linhaService.getLinhasOperadoras(cdLinha);
+    }
+
+    /**
+     * 
+     * @param cdLinha
+     * @param limit
+     * @returns 
+     */
+    @Get('/short/:cdLinha/:limit')
+    getShortLinhas(
+        @Param('cdLinha') cdLinha: string, 
+        @Param('limit') limit: string
+    ): Promise<any> {
+    // Converter o limit para número do tipo bigint
+    const limitBigInt = BigInt(limit);
+    if (limitBigInt <= BigInt(0)) {
+        throw new BadRequestException('O limite deve ser um número válido maior que 0');
+    }
+    
+    return this.linhaService.getShortLinhas(cdLinha, limitBigInt);
+}
+
+    /**
+     * 
+     * @param cdLinha 
+     * @returns 
+     */
+    @Get('/find/:cdLinha/:limit')
+    getFindLinhas(
+        @Param('cdLinha') cdLinha: string, 
+        @Param('limit') limit: bigint
+    ): Promise<any> {
+        const limitBigInt = BigInt(limit);
+        if (limitBigInt <= BigInt(0)) {
+            throw new BadRequestException('O limite deve ser um número válido maior que 0');
+        }
+        
+        return this.linhaService.getFindLinhas(cdLinha, limitBigInt);
     }
 }

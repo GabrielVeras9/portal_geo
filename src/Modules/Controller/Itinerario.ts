@@ -8,6 +8,14 @@ export class ItinerarioController {
 
     @Get(':codigoLinha')
     async getItinerarioDescritivo(@Param('codigoLinha') codigoLinha: string) {
-        return this.itinerarioService.findItinerarioDescritivoByCodigo(codigoLinha);
+        return this.itinerarioService.findItinerario(codigoLinha);
+    }
+
+    @Get('/:sentido/:codigoLinha')
+    async getSentidoItinerario(
+        @Param('codigoLinha') codigoLinha: string,
+        @Param('sentido') sentido: string
+    ) {
+        return this.itinerarioService.findSentidoItinerario(codigoLinha, sentido);
     }
 }
