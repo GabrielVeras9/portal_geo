@@ -34,7 +34,6 @@ export class UltimaPosicaoRepository {
     return formatPosicao(result) as UltimaPosicao[];
 }
 
-
     /**
      * Responsavel por ativar a function do banco de dados e realizar a pesquisa
      * @returns

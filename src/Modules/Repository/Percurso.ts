@@ -19,7 +19,7 @@ export class PercursoRepository extends Repository<PercursoEntity> {
         tl.cd_linha,
         ti.lin_extensao,
         ti.lin_sentido,
-        dados_mobilidade.ST_AsGeoJSON(ti.geo_linhas_lin) AS geo_linhas
+        public.ST_AsGeoJSON(ti.geo_linhas_lin) AS geo_linhas
       FROM
         dados_mobilidade.tab_linha tl
       JOIN 
@@ -41,9 +41,8 @@ export class PercursoRepository extends Repository<PercursoEntity> {
     const query = `
       SELECT           
         tl.cd_linha,
-        ti.lin_extensao,
         ti.lin_sentido,
-        dados_mobilidade.ST_AsGeoJSON(ti.geo_linhas_lin) AS geo_linhas
+        public.ST_AsGeoJSON(ti.geo_linhas_lin) AS geo_linhas
     FROM 
       dados_mobilidade.tab_linha tl 
     JOIN 
@@ -68,7 +67,7 @@ export class PercursoRepository extends Repository<PercursoEntity> {
         tl.cd_linha,
         ti.lin_extensao,
         ti.lin_sentido,
-        dados_mobilidade.ST_AsGeoJSON(ti.geo_linhas_lin) AS geo_linhas
+        public.ST_AsGeoJSON(ti.geo_linhas_lin) AS geo_linhas
       FROM 
         dados_mobilidade.tab_linha tl
       JOIN 

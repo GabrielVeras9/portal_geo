@@ -11,7 +11,4 @@ export class PercursoEntity {
   @Column({ name: 'lin_extensao', type: 'numeric', precision: 6, scale: 2 })linExtensao: number;
   @Column({ name: 'lin_sentido', type: 'varchar', length: 10 })linSentido: string;
   @Column({ name: 'geo_linhas_lin', type: 'geometry', nullable: true, spatialFeatureType: 'LineString', srid: 4323 })geoLinhasLin: string;
-
-  @ManyToOne(() => Linha, linha => linha.percursos)
-  @JoinColumn({ name: 'id_linha', referencedColumnName: 'IdLinha' }) linha: Linha;
 }

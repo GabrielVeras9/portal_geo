@@ -1,7 +1,6 @@
 export function formatPercurso(result: any[]) {
     return result.map(item => ({
         Numero: item.cd_linha,
-        Extensao: item.lin_extensao,
         Sentido: item.lin_sentido,
         GeoLinhas: isValidJson(item.geo_linhas) ? JSON.parse(item.geo_linhas) : item.geo_linhas // Checa se é JSON
     }));
