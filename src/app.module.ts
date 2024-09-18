@@ -20,6 +20,10 @@ import { Parada } from './Modules/Entity/Parada';
 import { ParadaService } from './Modules/Service/Parada';
 import { ParadaController } from './Modules/Controller/Parada';
 
+import { Horaria } from './Modules/Entity/Horario';
+import { HorariaService } from './Modules/Service/Horaria';
+import { HorarioController } from './Modules/Controller/Horaria';
+
 import { PercursoEntity } from './Modules/Entity/Percurso';
 import { PercursoService } from './Modules/Service/Percurso';
 import { PercursoController } from './Modules/Controller/Percurso';
@@ -33,6 +37,7 @@ import { LinhaRepository } from './Modules/Repository/Linha';
 import { OperadoraRepository } from './Modules/Repository/Operadora';
 import { PercursoRepository } from './Modules/Repository/Percurso';
 import { UltimaPosicaoRepository } from './Modules/Repository/UltimaPosicao';
+import { HorariosRepository } from './Modules/Repository/Horario';
 import { CacheContentInterceptor } from './Modules/Interceptor/CacheContent';
 import configuration from './Modules/Config/configuration';
 
@@ -50,7 +55,7 @@ import configuration from './Modules/Config/configuration';
       username: process.env.DB_USERNAME || 'postgres',
       password: process.env.DB_PASSWORD || '123456',
       database: process.env.DB_DATABASE || 'postgres',
-      entities: [Linha, Parada, OperadoraEntity, PercursoEntity, UltimaPosicao],
+      entities: [Linha, Parada, OperadoraEntity, PercursoEntity, UltimaPosicao, Horaria],
       synchronize: false,
       logging: false,
     }),
@@ -71,6 +76,8 @@ import configuration from './Modules/Config/configuration';
     OperadoraRepository,
     PercursoRepository,
     UltimaPosicaoRepository,
+    HorariaService,
+    HorariosRepository,
     {
       provide: APP_INTERCEPTOR,
       useClass: CacheContentInterceptor,
@@ -82,6 +89,7 @@ import configuration from './Modules/Config/configuration';
     OperadoraCController,
     PercursoController,
     UltimaPosicaoController,
+    HorarioController
   ],
 })
 export class AppModule {}
