@@ -11,8 +11,4 @@ export class OperadoraSService {
     async findAll(): Promise<any> {
         return this.operadoraRepository.findAll();
     }
-
-    async findOperadorasByOperadoraName(operadora: string): Promise<any> {
-        return this.operadoraRepository.findOperadorasByOperadoraName(operadora);
-    }
 }

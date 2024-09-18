@@ -10,9 +10,4 @@ export class OperadoraCController {
     async findAll() {
         return this.operadoraService.findAll();
     }
-
-    @Get(':operadora')
-    async findOperadorasByOperadoraName(@Param('operadora') operadora: string) {
-        return this.operadoraService.findOperadorasByOperadoraName(operadora);
-    }
 }

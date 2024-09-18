@@ -14,44 +14,4 @@ export class UltimaPosicaoController {
         res.setHeader('Content-Type', 'application/json');
         res.json(data);
     }
-
-  @Get('/piracicabana')
-  async findPiracicabana(@Res() res: Response) {
-    const data = await this.UltimaPosicaoService.findPiracicabana();
-    res.setHeader('Content-Type', 'application/json');
-    res.json(data);
-  }
-
-  @Get('/pioneira')
-  async findPioneira(@Res() res: Response) {
-    const data = await this.UltimaPosicaoService.findPioneira();
-    res.setHeader('Content-Type', 'application/json');
-    res.json(data);
-  }
-
-  @Get('/urbi')
-  async findUrbi(@Res() res: Response) {
-    const data = await this.UltimaPosicaoService.findUrbi();
-    res.setHeader('Content-Type', 'application/json');
-    res.json(data);
-  }
-
-  @Get('/marechal')
-  async findMarechal(@Res() res: Response) {
-    const data = await this.UltimaPosicaoService.findMarechal();
-    res.setHeader('Content-Type', 'application/json');
-    res.json(data);
-  }
-
-  @Get('/saojose')
-  async findSaoJose(@Res() res: Response) {
-    const data = await this.UltimaPosicaoService.findSaoJose();
-    res.setHeader('Content-Type', 'application/json');
-    res.json(data);
-  }
-
-  @Get('/recent/:cd_linha')
-  async getPiracicabanaLinha(@Param('cd_linha') cd_linha: string) {
-    return this.UltimaPosicaoService.findPositionLinhaNumber(cd_linha);
-  }
 }

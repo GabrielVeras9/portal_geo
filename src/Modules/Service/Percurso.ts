@@ -17,23 +17,4 @@ export class PercursoService {
   async findAllPercurso(): Promise<any> {
     return await this.percursoRepository.findAllPercurso();
   }
-
-  /**
-   * 
-   * @param cdLinha 
-   * @returns 
-   */
-  async findByCdLinha(cdLinha: string): Promise<any> {
-    return this.percursoRepository.findByCdLinha(cdLinha);
-  }
-  
-  /**
-   * 
-   * @param cdLinha 
-   * @param linSentido 
-   * @returns 
-   */
-  async findBySentidoLinha(cdLinha: string, linSentido: string): Promise<any> {
-    return this.percursoRepository.findByPercursoLinha(linSentido, cdLinha);
-  }
 }
